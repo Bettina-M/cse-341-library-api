@@ -1,0 +1,60 @@
+const {db}= require('../database/database')
+const Book = require('../models/model')
+
+async function getAllBooks(req, res, next){
+    try{
+        const allBooks = await Book.find()
+        if(!allBooks) return res.status(500).json({error:'Failed to get books'})
+        res.json(allBooks)
+
+    }catch(error){
+        next(error)
+        
+    }
+   
+}
+
+async function getBookById(req, res, next){
+    try{
+        const book = await Book.findById(req.params.id)
+        if(!book) return res.status(404).json({message:'Book not found'})
+        res.json(book)
+    }catch(error){
+        next(error)
+    }
+}
+
+async function createBook(req, res, next){
+    try{
+        const book = new Book(req.body)
+        await book.save()
+        if(!book) return res.status(400).json({message: 'Book not created'})
+        res.status(201).json(book)
+    }catch(error){
+        next(error)
+    }
+}
+
+async function updateBook(req, res, next){
+    try{
+        const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, {new:true},{runValidators: true})
+        
+        if(!updatedBook){
+            return res.status(404).json({message:'Book not found'})
+        } 
+        res.json(updatedBook)
+        
+    }catch(error){
+        next(error)
+    }
+}
+
+async function deleteBook(req, res, next){
+    try{
+        const deletedBook = await Book.findByIdAndDelete(req.params.id)
+        if(!deletedBook) return res.status(404).json({message:'Book not found'})
+    }catch(error){
+        next(error)
+    }
+}
+module.exports = {getAllBooks, getBookById, createBook, updateBook, deleteBook}

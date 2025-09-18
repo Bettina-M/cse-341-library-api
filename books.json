@@ -1,0 +1,72 @@
+[
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "publishedYear": 1960,
+    "available": true
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "publishedYear": 1949,
+    "available": true
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "genre": "Romance",
+    "publishedYear": 1813,
+    "available": false
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Classic",
+    "publishedYear": 1925,
+    "available": true
+  },
+  {
+    "title": "Moby Dick",
+    "author": "Herman Melville",
+    "genre": "Adventure",
+    "publishedYear": 1851,
+    "available": false
+  },
+  {
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "publishedYear": 1937,
+    "available": true
+  },
+  {
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "author": "J.K. Rowling",
+    "genre": "Fantasy",
+    "publishedYear": 1997,
+    "available": true
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "genre": "Fiction",
+    "publishedYear": 1951,
+    "available": false
+  },
+  {
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "genre": "Philosophical Fiction",
+    "publishedYear": 1988,
+    "available": true
+  },
+  {
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "genre": "Dystopian",
+    "publishedYear": 1932,
+    "available": true
+  }
+]

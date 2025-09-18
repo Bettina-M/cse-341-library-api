@@ -1,0 +1,35 @@
+###Get all books
+GET http://localhost:8080/books
+
+###Get Book by ID
+GET http://localhost:8080/books/68cbd41fcad42dae933ed497
+
+###Create New Book
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+    "title": "The Little Prince",
+    "author": "Maya Grace",
+    "genre": "New Genre",
+    "publishedYear": 2000,
+    "available": true
+    
+}
+
+###Update Book
+PUT http://localhost:8080/books/68cbd41fcad42dae933ed497
+Content-Type: application/json
+
+{
+    "title": "New Book Title",
+    "author": "New Author Name",
+    "genre": "New Genre",
+    "publishedYear": 3050,
+    "available": true
+   
+}
+
+###Delete Book
+DELETE http://localhost:8080/books/68cbd5bc4381f32efa8ad49b
+
