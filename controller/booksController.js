@@ -70,5 +70,6 @@ async function deleteBook(req, res, next){
     }catch(error){
         next(error)
     }
+    res.status(204).json({message:"Book deleted"})
 }
 module.exports = {getAllBooks, getBookById, createBook, updateBook, deleteBook}

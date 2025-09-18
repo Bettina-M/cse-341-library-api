@@ -29,6 +29,8 @@ body('publishedYear')
 body('available')
     .optional()
     .isBoolean()
+    .withMessage('Available must be true or false')
+    .toBoolean()
 ]
 
 const validationCheck = (req, res, next) =>{
