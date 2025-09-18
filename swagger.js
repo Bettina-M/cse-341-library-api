@@ -1,5 +1,4 @@
 const swaggerAutogen = require('swagger-autogen')
-c
 
 const doc = {
     info:{

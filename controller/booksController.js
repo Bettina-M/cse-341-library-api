@@ -26,7 +26,14 @@ async function getBookById(req, res, next){
 
 async function createBook(req, res, next){
     try{
-        const book = new Book(req.body)
+        const bookData = {
+            title: req.body.title,
+            author: req.body.author,
+            genre: req.body.genre,
+            publishedYear: req.body.publishedYear,
+            available: req.body.available
+        }
+        const book = new Book(bookData)
         await book.save()
         if(!book) return res.status(400).json({message: 'Book not created'})
         res.status(201).json(book)
@@ -37,7 +44,14 @@ async function createBook(req, res, next){
 
 async function updateBook(req, res, next){
     try{
-        const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, {new:true},{runValidators: true})
+        const bookData = {
+            title: req.body.title,
+            author: req.body.author,
+            genre: req.body.genre,
+            publishedYear: req.body.publishedYear,
+            available: req.body.available
+        }
+        const updatedBook = await Book.findByIdAndUpdate(req.params.id, bookData, {new:true},{runValidators: true})
         
         if(!updatedBook){
             return res.status(404).json({message:'Book not found'})
