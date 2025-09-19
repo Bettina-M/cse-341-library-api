@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const userSchema = new mongoose.Schema({
+const bookSchema = new mongoose.Schema({
     title: {type: String, required: true},
     author:{type:String, required: true},
     genre: {type: String, required: true},
@@ -8,4 +8,4 @@ const userSchema = new mongoose.Schema({
     available: {type:Boolean, required: false}
 })
 
-module.exports = mongoose.model('Book', userSchema);
+module.exports = mongoose.model('Book', bookSchema);

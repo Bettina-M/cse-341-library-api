@@ -33,3 +33,13 @@ Content-Type: application/json
 ###Delete Book
 DELETE http://localhost:8080/books/68cbd5bc4381f32efa8ad49b
 
+###Register User
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+    "userName": "Bettina Menya",
+    "email": "betina@gmail.com",
+    "password":"123"
+}
+

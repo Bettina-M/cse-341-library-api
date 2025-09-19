@@ -1,5 +1,5 @@
 const {db}= require('../database/database')
-const Book = require('../models/model')
+const Book = require('../models/bookModel')
 
 async function getAllBooks(req, res, next){
     try{
