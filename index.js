@@ -25,7 +25,7 @@ const config = {
     clientID: process.env.CLIENT_ID,
     issuerBaseURL: process.env.ISSUER_BASE_URL,
     authorizationParams: {
-    audience: process.env.AUDIENCE, //helps us access the API
+    audience: process.env.AUDIENCE,
     scope: 'openid profile email'
   }
 }
