@@ -30,8 +30,31 @@ const config = {
   }
 }
 
+
 // this helps us access the user profile info
 app.use(auth(config))
+
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDoc, {
+    swaggerOptions: {
+      oauth2RedirectUrl: `${process.env.BASE_URL}/api-docs/oauth2-redirect.html`,
+      persistAuthorization: true,
+      initOAuth: {
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET, 
+        realm: "Auth0",
+        appName: "Library API",
+        scopeSeparator: " ",
+        scopes: "openid profile email read:books",
+        additionalQueryStringParams: {},
+        usePkceWithAuthorizationCodeGrant: true
+      }
+    }
+  })
+);
+
 
 app.get('/', (req, res) =>{
     res.send(req.oidc.isAuthenticated()? 'Logged in':'Logged out');
@@ -45,20 +68,7 @@ app.use('/books', booksRoutes)
 
 app.use('/user',userRoutes)
 
-app.use(
-  '/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDoc, {
-    swaggerOptions: {
-      oauth2RedirectUrl: `${process.env.BASE_URL}/api-docs/oauth2-redirect.html`
-    },
-    initOAuth: {
-      clientId: process.env.CLIENT_ID,
-      scopes: ['openid', 'profile', 'email', 'read:books'],
-      usePkceWithAuthorizationCodeGrant: true
-    }
-  })
-);
+
 
 const port = process.env.PORT
 
@@ -79,7 +89,6 @@ app.use((req, res, next) =>{
 
 app.listen(port, () =>{
    console.log(`App listening on http://localhost:${port}`)
-   console.log("SECRET:", process.env.SECRET)
 
 })
 

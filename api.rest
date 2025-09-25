@@ -57,7 +57,7 @@ Content-Type: application/json
 {
     "userName": "Bettina Menya",
     "email": "menya@gmail.com",
-    "password":"000"
+    "password":"0001"
 }
 
 ###Delete User
