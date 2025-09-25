@@ -30,7 +30,9 @@ const config = {
 // this helps us access the user profile info
 app.use(auth(config))
 
-app.use(
+
+
+/*app.use(
   '/api-docs',
   swaggerUi.serve,
   swaggerUi.setup(swaggerDoc, {
@@ -49,7 +51,7 @@ app.use(
       }
     }
   })
-);
+);*/
 
 
 app.get('/', (req, res) =>{
@@ -71,6 +73,49 @@ const port = process.env.PORT
 app.get('/', (req, res) =>{
     res.send("Hello World")
 })
+
+app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerDoc, {
+        swaggerOptions: {
+            oauth2RedirectUrl: `${process.env.BASE_URL}/api-docs/oauth2-redirect.html`,
+            persistAuthorization: true,
+            // This ensures the authorize button appears
+            authAction: {
+                oauth2: {
+                    name: "oauth2",
+                    schema: {
+                        type: "oauth2",
+                        flows: {
+                            authorizationCode: {
+                                authorizationUrl: "https://dev-gbwrsi3upfsfczwp.us.auth0.com/authorize",
+                                tokenUrl: "https://dev-gbwrsi3upfsfczwp.us.auth0.com/oauth/token",
+                                scopes: {
+                                    openid: "OpenID connect",
+                                    profile: "User profile",
+                                    email: "User email",
+                                    "read:books": "Read books"
+                                }
+                            }
+                        }
+                    },
+                    value: {
+                        clientId: process.env.CLIENT_ID,
+                        clientSecret: process.env.CLIENT_SECRET || ""
+                    }
+                }
+            },
+            initOAuth: {
+                clientId: process.env.CLIENT_ID,
+                appName: "Library API",
+                scopeSeparator: " ",
+                scopes: "openid profile email read:books",
+                usePkceWithAuthorizationCodeGrant: true
+            }
+        }
+    })
+);
 //middlware
 app.use((err, req, res, next) =>{
     console.error(err.stack)
@@ -81,6 +126,8 @@ app.use((err, req, res, next) =>{
 app.use((req, res, next) =>{
     res.status(404).json({error: 'Route not found'})
 })
+
+
 
 
 app.listen(port, () =>{
