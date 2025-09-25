@@ -1,5 +1,6 @@
-const controller = require('../controller/booksController');
+const controller = require('../controller/booksController')
 const validator = require('../validator/bookvalidator')
+const {requiresAuth} = require('express-openid-connect')
 const express = require('express')
 const router = express.Router()
 
@@ -7,10 +8,12 @@ router.get('/', controller.getAllBooks)
 
 router.get('/:id', controller.getBookById)
 
-router.post('/', validator.validateBook, validator.validationCheck,controller.createBook)
+//Protected routes
 
-router.put('/:id', validator.validateBook, validator.validationCheck, controller.updateBook)
+router.post('/', requiresAuth(), validator.validateBook, validator.validationCheck,controller.createBook)
 
-router.delete('/:id', controller.deleteBook)
+router.put('/:id', requiresAuth(), validator.validateBook, validator.validationCheck, controller.updateBook)
+
+router.delete('/:id', requiresAuth(), controller.deleteBook)
 
 module.exports = router

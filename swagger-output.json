@@ -21,6 +21,16 @@
         }
       }
     },
+    "/profile": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/books/": {
       "get": {
         "description": "",
@@ -258,6 +268,25 @@
           },
           "404": {
             "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://dev-gbwrsi3upfsfczwp.us.auth0.com/authorize",
+            "tokenUrl": "https://dev-gbwrsi3upfsfczwp.us.auth0.com/oauth/token",
+            "scopes": {
+              "openid": "OpenID Connect scope",
+              "profile": "User profile info",
+              "email": "User email",
+              "read:books": "Read access to books"
+            }
           }
         }
       }
