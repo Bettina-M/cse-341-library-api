@@ -18,17 +18,13 @@ app.use(express.json())
 
 // this will set up the auth router on /login, /logout, and /callback
 const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: process.env.SECRET,
-    baseURL: process.env.BASE_URL,
-    clientID: process.env.CLIENT_ID,
-    issuerBaseURL: process.env.ISSUER_BASE_URL,
-    authorizationParams: {
-    audience: process.env.AUDIENCE,
-    scopes: 'openid profile email'
-  }
-}
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASE_URL,
+  clientID: process.env.CLIENT_ID,
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
+};
 
 
 // this helps us access the user profile info
