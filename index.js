@@ -75,6 +75,7 @@ app.use((req, res, next) =>{
 
 app.listen(port, () =>{
    console.log(`App listening on http://localhost:${port}`)
+   console.log("SECRET:", process.env.SECRET)
 
 })
 

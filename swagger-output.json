@@ -71,6 +71,11 @@
             }
           }
         ],
+        "security":[
+          {
+            "oauth2":["openid","profile","email"]
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -135,6 +140,11 @@
             }
           }
         ],
+        "security":[
+          {
+            "oauth2":["openid","profile","email"]
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -155,6 +165,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "security":[
+          {
+            "oauth2":["openid","profile","email"]
           }
         ],
         "responses": {
@@ -240,6 +255,11 @@
             }
           }
         ],
+        "security":[
+          {
+            "oauth2":["openid","profile","email"]
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -260,6 +280,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "security":[
+          {
+            "oauth2":["openid","profile","email"]
           }
         ],
         "responses": {
