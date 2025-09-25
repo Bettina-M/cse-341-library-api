@@ -26,7 +26,7 @@ const config = {
     issuerBaseURL: process.env.ISSUER_BASE_URL,
     authorizationParams: {
     audience: process.env.AUDIENCE,
-    scope: 'openid profile email'
+    scopes: 'openid profile email'
   }
 }
 
@@ -45,16 +45,20 @@ app.use('/books', booksRoutes)
 
 app.use('/user',userRoutes)
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc,{
-    swaggerOptions:{
-        oauth2RedirectUrl: `${process.env.BASE_URL}/api-docs/oauth2-redirect.html`,
-        oauth:{
-          clientID: process.env.CLIENT_ID,
-          scopes: "openid profile email" ,
-          usePkceWithAuthorizationCodeGrant: true
-        }
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDoc, {
+    swaggerOptions: {
+      oauth2RedirectUrl: `${process.env.BASE_URL}/api-docs/oauth2-redirect.html`
+    },
+    initOAuth: {
+      clientId: process.env.CLIENT_ID,
+      scopes: ['openid', 'profile', 'email', 'read:books'],
+      usePkceWithAuthorizationCodeGrant: true
     }
-}))
+  })
+);
 
 const port = process.env.PORT
 
