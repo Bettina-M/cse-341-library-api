@@ -4,7 +4,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: { title: 'Library API', version: '1.0.0' },
-    servers: [{ url: process.env.BASE_URL || 'http://localhost:8080' }],
+    servers: [{ url: process.env.BASE_URL}],
     components: {
       securitySchemes: {
         cookieAuth: {
