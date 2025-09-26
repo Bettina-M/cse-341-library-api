@@ -71,6 +71,12 @@
                 },
                 "available": {
                   "example": "any"
+                },
+                "isbn": {
+                  "example": "any"
+                },
+                "pages": {
+                  "example": "any"
                 }
               }
             }

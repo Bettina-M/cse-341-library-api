@@ -4,69 +4,89 @@
     "author": "Harper Lee",
     "genre": "Fiction",
     "publishedYear": 1960,
-    "available": true
+    "available": true,
+    "isbn": "9780061120084",
+    "pages": 281
   },
   {
     "title": "1984",
     "author": "George Orwell",
     "genre": "Dystopian",
     "publishedYear": 1949,
-    "available": true
+    "available": true,
+    "isbn": "9780451524935",
+    "pages": 328
   },
   {
     "title": "Pride and Prejudice",
     "author": "Jane Austen",
     "genre": "Romance",
     "publishedYear": 1813,
-    "available": false
+    "available": false,
+    "isbn": "9780141439518",
+    "pages": 279
   },
   {
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
     "genre": "Classic",
     "publishedYear": 1925,
-    "available": true
+    "available": true,
+    "isbn": "9780743273565",
+    "pages": 180
   },
   {
     "title": "Moby Dick",
     "author": "Herman Melville",
     "genre": "Adventure",
     "publishedYear": 1851,
-    "available": false
+    "available": false,
+    "isbn": "9781503280786",
+    "pages": 585
   },
   {
     "title": "The Hobbit",
     "author": "J.R.R. Tolkien",
     "genre": "Fantasy",
     "publishedYear": 1937,
-    "available": true
+    "available": true,
+    "isbn": "9780547928227",
+    "pages": 310
   },
   {
     "title": "Harry Potter and the Sorcerer's Stone",
     "author": "J.K. Rowling",
     "genre": "Fantasy",
     "publishedYear": 1997,
-    "available": true
+    "available": true,
+    "isbn": "9780590353427",
+    "pages": 309
   },
   {
     "title": "The Catcher in the Rye",
     "author": "J.D. Salinger",
     "genre": "Fiction",
     "publishedYear": 1951,
-    "available": false
+    "available": false,
+    "isbn": "9780316769488",
+    "pages": 214
   },
   {
     "title": "The Alchemist",
     "author": "Paulo Coelho",
     "genre": "Philosophical Fiction",
     "publishedYear": 1988,
-    "available": true
+    "available": true,
+    "isbn": "9780061122415",
+    "pages": 208
   },
   {
     "title": "Brave New World",
     "author": "Aldous Huxley",
     "genre": "Dystopian",
     "publishedYear": 1932,
-    "available": true
+    "available": true,
+    "isbn": "9780060850524",
+    "pages": 268
   }
 ]

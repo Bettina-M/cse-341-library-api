@@ -31,7 +31,9 @@ async function createBook(req, res, next){
             author: req.body.author,
             genre: req.body.genre,
             publishedYear: req.body.publishedYear,
-            available: req.body.available
+            available: req.body.available,
+            isbn: req.body.isbn,
+            pages: req.body.pages
         }
         const book = new Book(bookData)
         await book.save()

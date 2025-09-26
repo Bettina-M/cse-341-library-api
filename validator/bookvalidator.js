@@ -28,7 +28,17 @@ body('publishedYear')
 body('available')
     .optional()
     .isBoolean()
-    .withMessage('Available must be true or false')
+    .withMessage('Available must be true or false'),
+
+body('isbn')
+    .notEmpty()
+    .withMessage('ISBN is required'),
+
+body('pages')
+    .notEmpty()
+    .withMessage('Number of pages is required')
+    .isInt({min:1})
+    .withMessage('Pages must be a positive integer')
     
 ]
 
