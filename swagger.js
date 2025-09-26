@@ -6,7 +6,7 @@ const doc = {
     title: 'Library API',
     version: '1.0.0',
   },
-  host: process.env.BASE_URL, // e.g. your-app.onrender.com
+  host: process.env.BASE_URL.replace(/^https?:\/\//, ''), // e.g. your-app.onrender.com
   schemes: [process.env.NODE_ENV === 'production' ? 'https' : 'http'],
   basePath: '/',
   securityDefinitions: {

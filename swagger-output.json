@@ -5,10 +5,10 @@
     "version": "1.0.0",
     "description": ""
   },
-  "host": "http://localhost:8080",
+  "host": "cse-341-library-api-fpy9.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "securityDefinitions": {
     "cookieAuth": {
@@ -20,8 +20,8 @@
     "oauth2": {
       "type": "oauth2",
       "flow": "accessCode",
-      "authorizationUrl": "http://localhost:8080/auth/google",
-      "tokenUrl": "http://localhost:8080/auth/google/callback",
+      "authorizationUrl": "cse-341-library-api-fpy9.onrender.com/auth/google",
+      "tokenUrl": "cse-341-library-api-fpy9.onrender.com/auth/google/callback",
       "scopes": {}
     }
   },
