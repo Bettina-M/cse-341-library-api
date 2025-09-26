@@ -25,7 +25,7 @@ try {
         const { email, password } = req.body;
         const user = await User.findOne({ email, provider: "local" });
         if (!user) return res.status(401).json({ message: "Invalid email or password" });
-        const match = await bcrypt.compare(password, user.passwordHash);
+        const match = await bcrypt.compare(password, user.password);
         if (!match) return res.status(401).json({ message: "Invalid email or password" });
         req.login(user, (err) => {
             if (err) return next(err);
