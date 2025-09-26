@@ -63,3 +63,14 @@ Content-Type: application/json
 ###Delete User
 DELETE http://localhost:8080/user/68cd17c8e44737cf1b5394fe
 
+### Get access token
+POST https://dev-gbwrsi3upfsfczwp.us.auth0.com/oauth/token
+Content-Type: application/json
+
+{
+  "client_id": "S5dOFF3TPlpwrmij5VBYq0THGnBIrNgE",
+  "client_secret": "obXuAbdd0bCLRPYBGs-LbvFeCAipYC5SoLOmx6cvMz7dpI9J_m1j5GIzMBd5j4SZ",
+  "audience": "https://library-api",
+  "grant_type": "client_credentials"
+}
+

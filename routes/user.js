@@ -3,8 +3,9 @@ const validator = require('../validator/uservalidator')
 const express = require('express')
 const router = express.Router()
 
-router.post('/',validator.userValidationCheck, validator.validateUser, controller.registerUser)
-router.get('/', controller.getAllUsers)
-router.put('/:id', validator.userValidationCheck, validator.validateUser, controller.updateUser)
-router.delete('/:id', controller.deleteUser)
+
+router.post('/',  validator.validateUser, validator.userValidationCheck, controller.registerUser)
+router.post('/login', validator.userValidationCheck,controller.loginUser)
+router.post('/logout', controller.logoutUser)
+
 module.exports = router

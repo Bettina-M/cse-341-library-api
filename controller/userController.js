@@ -1,58 +1,47 @@
 const User = require('../models/userModel')
+const bcrypt = require('bcrypt')
 
-async function registerUser(req, res, next){
-    try{
-        const userData = {
-        userName: req.body.userName,
-        email: req.body.email,
-        password: req.body.password
+exports.registerUser = async (req, res, next)=>{
+
+try {
+    const { email, password, userName } = req.body;
+    const existing = await User.findOne({ email });
+    if (existing) return res.status(409).json({ message: "Email already in use" });
+
+    const hash = await bcrypt.hash(password, 10);
+    const user = new User({ email, password: hash, userName, provider: "local" });
+    await user.save();
+
+    req.login(user, (err) => {
+      if (err) return next(err);
+      res.status(201).json({ message: "Registered", user: { id: user._id, email: user.email } });
+    });
+  } catch (err) { next(err); }
+};
+
+ exports.loginUser = async (req, res, next) =>{
+    try {
+        
+        const { email, password } = req.body;
+        const user = await User.findOne({ email, provider: "local" });
+        if (!user) return res.status(401).json({ message: "Invalid email or password" });
+        const match = await bcrypt.compare(password, user.passwordHash);
+        if (!match) return res.status(401).json({ message: "Invalid email or password" });
+        req.login(user, (err) => {
+            if (err) return next(err);
+            res.json({ message: "Logged in", user: { id: user._id, email: user.email } });
+        });
     }
+    catch (err) { next(err); }
+}
 
-    const user = new User(userData)
-    await user.save()
-    if(!user) return res.status(400).json({message:'User not saved'})
-        res.status(201).json(user)
-    }catch(error){
-        next(error)
+    exports.logoutUser= async (req, res, next) =>{
+        try {
+            req.logout((err) => {
+                if (err) return next(err);
+                req.session.destroy(() => res.json({ message: "Logged out" }));
+            });
+        } catch (error) {
+            next(error);
+        }   
     }
-    
-}
-
-async function getAllUsers(req, res, next){
-    try{
-        const users = await User.find()
-        if(!users) return res.status(404).json({message:'No users found'})
-        res.status(200).json(users)
-    }catch(error){
-        next(error)
-    }
-}
-
-async function updateUser(req, res, next){
-    try{
-        const userId = req.params.id
-        const updateData ={
-            userName: req.body.userName,
-            email: req.body.email,
-            password: req.body.password
-        }
-        const user = await User.findByIdAndUpdate(userId, updateData, {new:true})
-        if(!user) return res.status(404).json({message:'User not found'})
-        res.status(200).json(user)
-    }catch(error){
-        next(error)
-    }   
-}
-
-async function deleteUser(req, res, next){
-    try{
-        const userId = req.params.id
-        const user = await User.findByIdAndDelete(userId)
-        if(!user) return res.status(404).json({message:'User not found'})
-        res.status(200).json({message:'User deleted successfully'})
-    }catch(error){
-        next(error)
-    }   
-}
-
-module.exports = {registerUser, getAllUsers, updateUser, deleteUser}

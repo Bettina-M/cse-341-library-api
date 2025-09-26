@@ -1,7 +1,6 @@
-const express = require('express')
 const {body, validationResult} = require('express-validator')
 
-const validateUser =[
+exports.validateUser =[
     body('userName')
     .notEmpty()
     .withMessage('Enter a username'),
@@ -18,7 +17,8 @@ const validateUser =[
 
 ]
 
-const userValidationCheck = (req, res, next) =>{
+
+exports.userValidationCheck = (req, res, next) =>{
     const errors = validationResult(req)
 
     if(!errors.isEmpty()){
@@ -34,7 +34,3 @@ const userValidationCheck = (req, res, next) =>{
     next()
 }
 
-module.exports ={
-    validateUser,
-    userValidationCheck
-}
