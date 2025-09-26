@@ -1,35 +1,32 @@
 const swaggerAutogen = require('swagger-autogen')();
+require('dotenv').config();
 
-const options = {
-  definition: {
-    openapi: '3.0.0',
-    info: { title: 'Library API', version: '1.0.0' },
-    servers: [{ url: process.env.BASE_URL}],
-    components: {
-      securitySchemes: {
-        cookieAuth: {
-          type: 'apiKey',
-          in: 'cookie',
-          name: 'connect.sid',
-          description: 'Session cookie for authentication (Passport sessions)'
-        },
-        oauth2: {
-          type: 'oauth2',
-          flows: {
-            authorizationCode: {
-              authorizationUrl: `${process.env.BASE_URL}/auth/google`,
-              tokenUrl: `${process.env.BASE_URL}/auth/google/callback`,
-              scopes: {}
-            }
-          }
-        }
-      }
-    }
+const doc = {
+  info: {
+    title: 'Library API',
+    version: '1.0.0',
   },
-  apis: ['./routes/*.js']
+  host: process.env.BASE_URL, // e.g. your-app.onrender.com
+  schemes: [process.env.NODE_ENV === 'production' ? 'https' : 'http'],
+  basePath: '/',
+  securityDefinitions: {
+    cookieAuth: {
+      type: 'apiKey',
+      in: 'cookie',
+      name: 'connect.sid',
+      description: 'Session cookie for authentication (Passport sessions)',
+    },
+    oauth2: {
+      type: 'oauth2',
+      flow: 'accessCode',
+      authorizationUrl: `${process.env.BASE_URL}/auth/google`,
+      tokenUrl: `${process.env.BASE_URL}/auth/google/callback`,
+      scopes: {},
+    },
+  },
 };
 
 const outputFile = './swagger-output.json';
 const endpointsFiles = ['./index.js']; 
 
-swaggerAutogen(outputFile, endpointsFiles, options);
+swaggerAutogen(outputFile, endpointsFiles, doc);

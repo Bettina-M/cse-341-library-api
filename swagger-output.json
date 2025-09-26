@@ -1,15 +1,30 @@
 {
   "swagger": "2.0",
   "info": {
+    "title": "Library API",
     "version": "1.0.0",
-    "title": "REST API",
     "description": ""
   },
-  "host": "localhost:8080",
+  "host": "http://localhost:8080",
   "basePath": "/",
   "schemes": [
     "http"
   ],
+  "securityDefinitions": {
+    "cookieAuth": {
+      "type": "apiKey",
+      "in": "cookie",
+      "name": "connect.sid",
+      "description": "Session cookie for authentication (Passport sessions)"
+    },
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "http://localhost:8080/auth/google",
+      "tokenUrl": "http://localhost:8080/auth/google/callback",
+      "scopes": {}
+    }
+  },
   "paths": {
     "/": {
       "get": {
@@ -285,100 +300,5 @@
         }
       }
     }
-  },
-  "definitions": {
-    "openapi": {
-      "type": "string",
-      "example": "3.0.0"
-    },
-    "info": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "example": "Library API"
-        },
-        "version": {
-          "type": "string",
-          "example": "1.0.0"
-        }
-      }
-    },
-    "servers": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "undefined"
-          }
-        }
-      }
-    },
-    "components": {
-      "type": "object",
-      "properties": {
-        "securitySchemes": {
-          "type": "object",
-          "properties": {
-            "cookieAuth": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "apiKey"
-                },
-                "in": {
-                  "type": "string",
-                  "example": "cookie"
-                },
-                "name": {
-                  "type": "string",
-                  "example": "connect.sid"
-                },
-                "description": {
-                  "type": "string",
-                  "example": "Session cookie for authentication (Passport sessions)"
-                }
-              }
-            },
-            "oauth2": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "oauth2"
-                },
-                "flows": {
-                  "type": "object",
-                  "properties": {
-                    "authorizationCode": {
-                      "type": "object",
-                      "properties": {
-                        "authorizationUrl": {
-                          "type": "string",
-                          "example": "undefined/auth/google"
-                        },
-                        "tokenUrl": {
-                          "type": "string",
-                          "example": "undefined/auth/google/callback"
-                        },
-                        "scopes": {
-                          "type": "object",
-                          "properties": {}
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "apis": [
-    "./routes/*.js"
-  ]
+  }
 }
