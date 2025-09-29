@@ -22,13 +22,13 @@ try {
  exports.loginUser = async (req, res, next) =>{
     try {
         
-        const { email, password } = req.body;
-        const user = await User.findOne({ email, provider: "local" });
+        const { email, password } = req.body
+        const user = await User.findOne({ email, provider: "local" })
         if (!user) return res.status(401).json({ message: "Invalid email or password" });
         const match = await bcrypt.compare(password, user.password);
         if (!match) return res.status(401).json({ message: "Invalid email or password" });
         req.login(user, (err) => {
-            if (err) return next(err);
+            if (err) return next(err)
             res.json({ message: "Logged in", user: { id: user._id, email: user.email } });
         });
     }
@@ -38,10 +38,29 @@ try {
     exports.logoutUser= async (req, res, next) =>{
         try {
             req.logout((err) => {
-                if (err) return next(err);
-                req.session.destroy(() => res.json({ message: "Logged out" }));
-            });
+                if (err) return next(err)
+                req.session.destroy(() => res.json({ message: "Logged out" }))
+            })
         } catch (error) {
-            next(error);
+            next(error)
         }   
+    }
+
+    exports.getUserbyId = async (req, res, next) =>{
+        try {
+            const user = await User.findById(req.params.id).select('_id')
+            if (!user) return res.status(404).json({ message: "User not found" })
+            res.json(user)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    exports.getAllUsers = async (req, res, next) =>{
+        try {
+            const users = await User.find()
+            res.json(users)
+        } catch (error) {
+            next(error)
+        }
     }
