@@ -8,7 +8,7 @@
   "host": "cse-341-library-api-fpy9.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "securityDefinitions": {
     "cookieAuth": {
