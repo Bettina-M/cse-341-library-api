@@ -14,7 +14,7 @@ router.get('/', ensureAuthenticated, controller.getAllUsers)
 
 router.post('/logout', controller.logoutUser)
 
-router.put('/:id,', ensureAuthenticated, validator.userValidationCheck, controller.updateUser)
+router.put('/:id', ensureAuthenticated, validator.userValidationCheck, controller.updateUser)
 
 router.delete('/:id', ensureAuthenticated, controller.deleteUser)
 
