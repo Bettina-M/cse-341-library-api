@@ -64,3 +64,28 @@ try {
             next(error)
         }
     }
+
+    exports.updateUser = async (req, res, next) =>{
+        try {
+            const { email, password, userName } = req.body
+            const user = await User.findById(req.params.id)
+            if (!user) return res.status(404).json({ message: "User not found" })
+            if (email) user.email = email
+            if (password) user.password = await bcrypt.hash(password, 10)
+            if (userName) user.userName = userName
+            await user.save()
+            res.json({ message: "User updated", user: { id: user._id, email: user.email } })
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    exports.deleteUser = async (req, res, next) =>{
+        try {
+            const user = await User.findByIdAndDelete(req.params.id)
+            if (!user) return res.status(404).json({ message: "User not found" })
+            res.json({ message: "User deleted" })
+        } catch (error) {
+            next(error)
+        }
+    }
